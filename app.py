@@ -29,10 +29,22 @@ st.line_chart(history_df[["loss", "val_loss"]])
 # Evaluation
 st.subheader("Confusion Matrix")
 cm = confusion_matrix(y_test, y_pred_labels)
-fig, ax = plt.subplots()
-sns.heatmap(cm, annot=True, fmt="d", xticklabels=label_names, yticklabels=label_names, cmap="Blues")
+fig, ax = plt.subplots(figsize=(10, 10))  # 🔧 Resize the figure
+sns.heatmap(
+    cm,
+    annot=False,
+    cmap="Blues",
+    xticklabels=label_names,
+    yticklabels=label_names,
+    cbar=True
+)
 ax.set_xlabel("Predicted")
 ax.set_ylabel("Actual")
+
+# 🔧 Rotate x-axis and y-axis labels for readability
+plt.xticks(rotation=90, fontsize=8)
+plt.yticks(rotation=0, fontsize=8)
+
 st.pyplot(fig)
 
 st.subheader("Classification Report")
