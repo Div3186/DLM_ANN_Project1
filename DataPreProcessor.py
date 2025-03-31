@@ -4,6 +4,7 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 import pandas as pd
+import streamlit as st
 
 class DataPreProcessor:
     def __init__(self, dataframe, target_variable, use_one_hot_encoding=True, train_test_split_percentage=80):
@@ -34,3 +35,8 @@ class DataPreProcessor:
         X_processed = preprocessor.fit_transform(X)
         X_train, X_test, y_train, y_test = train_test_split(X_processed, y, train_size=self.train_size, random_state=42)
         return X_train, X_test, y_train, y_test
+@st.cache_data
+def load_dataset(file_path):
+    df = pd.read_csv(file_path)
+    return df
+
