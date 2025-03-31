@@ -9,7 +9,7 @@ def custom_preprocess(dataframe, target_variable):
     le = LabelEncoder()
     df = df.dropna(subset=[target_variable])
     df[target_variable] = le.fit_transform(df[target_variable].astype(str))
-    preprocessor = DataPreprocessor(df, target_variable, use_one_hot_encoding=True)
+    preprocessor = DataPreProcessor(df, target_variable, use_one_hot_encoding=True)
     X_train, X_test, y_train, y_test = preprocessor.pre_process()
     return X_train, X_test, y_train, y_test, le
 
