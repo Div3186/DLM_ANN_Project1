@@ -36,5 +36,14 @@ ax.set_ylabel("Actual")
 st.pyplot(fig)
 
 st.subheader("Classification Report")
-report = classification_report(y_test, y_pred_labels, target_names=label_names, output_dict=True)
+from sklearn.utils.multiclass import unique_labels
+valid_labels = unique_labels(y_test, y_pred_labels)
+
+report = classification_report(
+    y_test,
+    y_pred_labels,
+    labels=valid_labels,
+    target_names=[label_names[i] for i in valid_labels],
+    output_dict=True
+)
 st.dataframe(pd.DataFrame(report).transpose())
