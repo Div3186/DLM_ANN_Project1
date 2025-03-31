@@ -1,7 +1,7 @@
 
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
-from DataPreProcessor import DataPreprocessor
+from DataPreProcessor import DataPreProcessor
 from model import build_ann, train_model
 
 def custom_preprocess(dataframe, target_variable):
